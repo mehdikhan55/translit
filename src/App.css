@@ -1,0 +1,159 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+
+.main{
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  background-color: cornsilk;
+}
+
+.app{
+  width: 100%;
+  display: flex;
+  flex-direction: column ;
+  /* justify-content: center; */
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1280px;
+}
+
+/* Hero Section Start  */
+.hero_header{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.nav{
+  background-color: black; 
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 32px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid black;
+}
+.logo_heading{
+  font-size: 2.5em;
+  font-weight: 700;
+  color: white;
+}
+.nav_btn{
+  border: none;
+  background-color: white;
+  color: black;
+}
+.nav_btn:hover{
+  background-color: gray;
+  color: whitesmoke;
+}
+
+.head_text{
+  font-size: 48px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+/* Hero Section End */
+
+/* Main Transaltion Section Start */
+.tranlation_section{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px 30px;
+}
+.container{
+  width: 100%;
+  display: flex;
+}
+.selections_container{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color:black;
+  column-gap: 20px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.translation_box_section{
+  /* background-color: red; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  color:black;
+  /* column-gap: 10px; */
+  flex-wrap: wrap;
+}
+.box{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #000000;
+}
+.box_btn_section{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.translation_box{
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: white;
+  color: black;
+  border: none;
+  resize: none; /* Disable textarea resizing */
+}
+.box_btn_section{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 10px;
+  background-color: white;
+  padding: 0 2em;
+  border: 0.5px solid black;
+}
+.copy_btn{
+  /* Base styles */
+width: 1.75rem; 
+height: 1.75rem; 
+
+background-color: #ffffff;
+display: flex; 
+justify-content: center; 
+align-items: center;
+cursor: pointer; 
+
+}
+.copy_icon{
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .translation_box_section{
+    flex-direction: column;
+  }
+  .box{
+    width: 100%;
+  }
+}
