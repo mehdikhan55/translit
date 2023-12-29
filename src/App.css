@@ -11,9 +11,31 @@
   justify-content: center;
   background-color: cornsilk;
 }
+.main:before {
+  background: radial-gradient(circle, rgb(182, 189, 41), #fafafa 100%);
+  position: absolute;
+  content: "";
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+
+.main:after {
+  content: "";
+  background-image: url("/src/assets/grid.svg");
+  z-index: -2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  opacity: 0.4;
+  filter: invert(1);
+}
 
 .app{
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column ;
   /* justify-content: center; */
@@ -48,11 +70,11 @@
 }
 .nav_btn{
   border: none;
-  background-color: white;
-  color: black;
+  background-color: rgb(104, 101, 101);
+  color: whitesmoke;
 }
 .nav_btn:hover{
-  background-color: gray;
+  background-color: rgb(67, 65, 65);
   color: whitesmoke;
 }
 
@@ -89,7 +111,7 @@
   flex-wrap: wrap;
 }
 .translation_box_section{
-  /* background-color: red; */
+  background-color: red;
   width: 100%;
   display: flex;
   justify-content: flex-start;
@@ -100,6 +122,7 @@
 }
 .box{
   width: 50%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   border: 2px solid #000000;
@@ -117,9 +140,12 @@
   box-sizing: border-box;
   background-color: white;
   color: black;
+  font-size: .8em;
+  font-family: sans-serif;
   border: none;
   resize: none; /* Disable textarea resizing */
 }
+
 .box_btn_section{
   width: 100%;
   display: flex;
@@ -156,4 +182,10 @@ cursor: pointer;
   .box{
     width: 100%;
   }
+}
+
+
+.loader{
+  width: 5%;
+  object-fit: contain;
 }
