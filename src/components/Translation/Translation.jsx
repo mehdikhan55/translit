@@ -9,6 +9,7 @@ export default function Translation() {
   const [inputLanguage, setInputLanguage] = useState('english');
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
+  const [documentType,setDocumentType]= useState("standard");
   const [loading, setLoading] = useState(false);
   const [gptVersion,setGptVersion] = useState('gpt3');
 
@@ -47,6 +48,8 @@ useEffect(() => {
         setLoading={setLoading}
         isFetching={isFetching}
         translate={translate}
+        documentType={documentType}
+        setDocumentType={setDocumentType}
         />
 
         <TranslationBox
