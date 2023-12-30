@@ -13,7 +13,7 @@ export default function TranslationBox({ inputLanguage, outputLanguage, inputTex
 
         <div className='box_btn_section'>
           <h4>Output</h4>
-          <div className='copy_btn'>
+          <div onClick={handleCopy} className='copy_btn'>
             <h4>Copy</h4>
             <img src={copy} alt="copy_icon" className='copy_icon' />
           </div>
@@ -26,7 +26,7 @@ export default function TranslationBox({ inputLanguage, outputLanguage, inputTex
 
         <div className='box_btn_section'>
           <h4>Output</h4>
-          <div className='copy_btn'>
+          <div onClick={handleCopy} className='copy_btn'>
             <h4>Copy</h4>
             <img src={copy} alt="copy_icon" className='copy_icon' />
           </div>
