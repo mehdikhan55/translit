@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react'
 import loader from '../../assets/loader.svg'
 
-export default function Selections({ inputLanguage, setInputLanguage, outputLanguage, setOutputLanguage, gptVersion, setGptVersion, loading, setLoading, isFetching, translate, documentType, setDocumentType }) {
+export default function Selections({ inputLanguage, setInputLanguage, outputLanguage, setOutputLanguage, gptVersion, setGptVersion, loading, setLoading, isFetching,  documentType, setDocumentType,translate }) {
 
 
+    const translateNow=async()=>{
+        console.log("translateNow called")
+        translate();
+    
+    }
 
     return (
         <div className="selections_container">
@@ -35,10 +40,10 @@ export default function Selections({ inputLanguage, setInputLanguage, outputLang
                 <option value="gpt3">GPT 3.5</option>
                 <option value="gpt4">GPT 4</option>
             </select>
-            <button onClick={translate} className='nav_btn'>
+            <button onClick={()=>translateNow()} className='nav_btn'>
                 Translate
             </button>
-            {isFetching && <img src={loader} alt="loader" className='loader' />}
+            {loading && <img src={loader} alt="loader" className='loader' />}
 
         </div>
     )
@@ -149,7 +154,5 @@ const languageOptions = [
     'Guarani',
     'Hausa',
     'Inuktitut',
-    'Javanese',
-    'Kazakh',
   ];
   
