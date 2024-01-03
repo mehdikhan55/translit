@@ -2,10 +2,12 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
+  
 }
 
 .body{
   display: block;
+ 
 }
 
 .main{
@@ -13,7 +15,7 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: cornsilk;
+  background-color: rgb(244, 254, 208);
 }
 .main:before {
   background: radial-gradient(circle, rgb(182, 189, 41), #fafafa 100%);
@@ -190,10 +192,25 @@ cursor: pointer;
 
 
 .loader{
-  width: 5%;
+  width: 3.3%;
   object-fit: contain;
 }
+@media only screen and (max-width: 600px){
+  .loader{
+    width: 5px;
+  }
+}
 
+.doc-type-box{
+  display: flex;
+  width: 190%;
+  column-gap: 4px;
+}
+#doc-type{
+  width: 45%;
+  /* background-color: red; */
+  resize: none;
+}
 
 /* Login Page  */
 /* Login Container  */
@@ -214,6 +231,19 @@ cursor: pointer;
   justify-content: center;
   flex-direction: column;
   row-gap: .6rem;
+  border-radius: 15px;
+  border: 2px solid #102c55;
+  box-shadow: 0 0  70px #102c55;
+}
+@media only screen and (max-width: 600px) {
+  .login-box{
+    width: 70%;
+  }
+}
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .login-box{
+    width: 60%;
+  }
 }
 .login-box>label>h2{
   color: white;
@@ -223,6 +253,7 @@ cursor: pointer;
 }
 #pass-field{
   width: 70%;
+  outline: 2px solid  rgba(19, 55, 108, 0.929);
 }
 #pass-field:focus{
   outline: 2px solid #2664BE;
@@ -237,5 +268,4 @@ cursor: pointer;
   font-size: 1.2em;
   font-weight: 600;
   cursor: pointer;
-
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Selections from './Selections'
 import TranslationBox from './TranslationBox'
-import { useLazyGetTranslationQuery } from '../../services/translation';
 
 import OpenAI from 'openai';
 
@@ -12,12 +11,10 @@ export default function Translation() {
   const [inputText, setInputText] = useState('');
   const [outputText, setOutputText] = useState('');
   const [documentType, setDocumentType] = useState("standard");
+  const [docTypeByUser,setDocTypeByUser]=useState("");
   const [loading, setLoading] = useState(false);
   const [gptVersion, setGptVersion] = useState('gpt3');
-  const [messageToSend, setMessageToSend] = useState("");
-
-  const [getTranslation, { error, isFetching }] = useLazyGetTranslationQuery();
-
+  const [error,setError]=useState(false);
 
 
   //calling api
@@ -26,18 +23,17 @@ export default function Translation() {
     dangerouslyAllowBrowser: true,
   });
 
-  
-
 
   const translate = async () => {
-    console.log("translate called")
+    let msg
     try {
       setLoading(true);
-      // console.log("input text: " + inputText);
 
-      const msg=`You are a ${inputLanguage} to ${outputLanguage}  translator. This document is a ${documentType} type. Translate the following text accurately and give output in the same format as i gave you, this is the text you have to translate: ${inputText}`
-
-      // console.log("msg: " + msg)
+      if(documentType==='standard'){
+         msg=`You are a ${inputLanguage} to ${outputLanguage}  translator. This document is a ${docTypeByUser}. Translate the following text accurately and give output in the exact same format as i gave you, this is the text you have to translate: ${inputText}`
+      }else if(documentType ==='medical'){
+         msg=`You are a ${inputLanguage} to ${outputLanguage} medical translator. Translate the following text accurately and give output in the exact same format as i gave you, this is the text you have to translate: ${inputText}`
+      }
 
       if(inputText.length===0 || inputText==="" || inputText===null){
         alert("Please enter some text to translate")
@@ -51,15 +47,23 @@ export default function Translation() {
 
       if (response && response.choices && response.choices.length > 0) {
         const translatedContent = response.choices[0].message.content;
-        console.log(translatedContent);
+    
         setOutputText(translatedContent);
       } else {
         // Handle empty or invalid response
-        console.error("Invalid response from OpenAI API");
+        setError(true);
+        setTimeout(() => {
+          setError(false)
+        }, 2500);
+        // console.error("Invalid response from OpenAI API");
       }
     } catch (error) {
       // Handle errors
-      console.error("Error translating text:", error);
+      setError(true);
+      setTimeout(() => {
+        setError(false)
+      }, 2500);
+      // console.error("Error translating text:", error);
     } finally {
       setLoading(false);
     }
@@ -67,15 +71,8 @@ export default function Translation() {
   };
 
 
-  useEffect(() => { console.log(error); }, [error]);
 
 
-
-
-  //checking languages and gpt version
-  useEffect(() => {
-    console.log(inputLanguage, outputLanguage, gptVersion);
-  }, [inputLanguage, outputLanguage, gptVersion])
 
 
   return (
@@ -90,11 +87,12 @@ export default function Translation() {
         setGptVersion={setGptVersion}
         loading={loading}
         setLoading={setLoading}
-        isFetching={isFetching}
         translate={translate}
         documentType={documentType}
         setDocumentType={setDocumentType}
-        
+        docTypeByUser={docTypeByUser}
+        setDocTypeByUser={setDocTypeByUser}
+        error={error}
       />
 
       <TranslationBox
@@ -108,8 +106,8 @@ export default function Translation() {
         loading={loading}
         setLoading={setLoading}
         error={error}
-        isFetching={isFetching}
-      />
+
+      />  
 
     </section>
   )

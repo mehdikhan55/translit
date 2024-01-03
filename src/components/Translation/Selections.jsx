@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react'
 import loader from '../../assets/loader.svg'
 
-export default function Selections({ inputLanguage, setInputLanguage, outputLanguage, setOutputLanguage, gptVersion, setGptVersion, loading, setLoading, isFetching,  documentType, setDocumentType,translate }) {
+export default function Selections({ inputLanguage, setInputLanguage, outputLanguage, setOutputLanguage, gptVersion, setGptVersion, loading, setLoading, documentType, setDocumentType, translate, docTypeByUser,setDocTypeByUser,error }) {
 
 
-    const translateNow=async()=>{
-        console.log("translateNow called")
+    const translateNow = async () => {
         translate();
-    
     }
 
     return (
@@ -28,23 +26,32 @@ export default function Selections({ inputLanguage, setInputLanguage, outputLang
                     </option>
                 ))}
             </select>
-            <h4>Document Type</h4>
-            <select name="doc" id="doc" onChange={(e) => setDocumentType(e.target.value)}
-                value={documentType}>
-                <option value="standard">Standard</option>
-                <option value="medical">Medical</option>
-            </select>
             <h4>GPT Version</h4>
             <select name="gpt" id="gpt" onChange={(e) => setGptVersion(e.target.value)}
                 value={gptVersion}>
                 <option value="gpt3">GPT 3.5</option>
                 <option value="gpt4">GPT 4</option>
             </select>
-            <button onClick={()=>translateNow()} className='nav_btn'>
+            <h4>Document Type</h4>
+            <select name="doc" id="doc" onChange={(e) => setDocumentType(e.target.value)}
+                value={documentType}>
+                <option value="standard">Standard</option>
+                <option value="medical">Medical</option>
+            </select>
+            {documentType === 'standard' &&
+                (
+                    <div className='doc-type-box'>
+                        <label htmlFor="doc-type"><h4>Write Doc Type </h4></label>
+                        <input value={docTypeByUser} onChange={(e)=>setDocTypeByUser(e.target.value)} type="text" id='doc-type'  />
+                    </div>
+                )
+
+            }
+            <button onClick={() => translateNow()} className='nav_btn'>
                 Translate
             </button>
             {loading && <img src={loader} alt="loader" className='loader' />}
-
+            {error && (<h5>Some Error Occured...Try again!</h5>)}
         </div>
     )
 }
@@ -154,5 +161,4 @@ const languageOptions = [
     'Guarani',
     'Hausa',
     'Inuktitut',
-  ];
-  
+];

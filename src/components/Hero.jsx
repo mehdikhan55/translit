@@ -1,12 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export default function Hero() {
+export default function Hero({ auth, setAuth}) {
 
   const navigate = useNavigate()
 
   const logout = () => {
     localStorage.setItem('isCurrentUser', false)
+    setAuth(false);
     navigate('/login')
   }
 

@@ -4,6 +4,7 @@ import Tranlation from './components/Translation/Translation';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Home from './components/Home';
 
 function App() {
   const [auth, setAuth] = useState(false);
@@ -11,23 +12,22 @@ function App() {
 
   useEffect(() => {
     // Simulate an asynchronous operation, replace with your actual logic
-    const checkCurrentUser =  () => {
+    const checkCurrentUser = () => {
       const isCurrentUser = localStorage.getItem('isCurrentUser');
 
-      if (isCurrentUser==='true') {
+      if (isCurrentUser === 'true') {
         setAuth(true);
       } else {
         setAuth(false);
       }
 
-      console.log('auth: '+auth)
       setUserLoading(false);
     };
 
     checkCurrentUser();
   }, []);
 
-  
+
 
 
   return (
@@ -40,14 +40,14 @@ function App() {
             path="/"
             element={
               auth ? (
-                <Home />
+                <Home auth={auth} setAuth={setAuth} />
               ) : (
                 // Redirect to login if not authenticated
                 <Navigate to="/login" />
               )
             }
           />
-          <Route path="login" element={<LoginPage />} />
+          <Route path="login" element={<LoginPage auth={auth} setAuth={setAuth}/>} />
         </Routes>
       )
       }
@@ -55,15 +55,6 @@ function App() {
   );
 }
 
-const Home = () => {
-  return (
-    <main className="main">
-      <div className="app">
-        <Hero />
-        <Tranlation />
-      </div>
-    </main>
-  );
-};
+
 
 export default App;
