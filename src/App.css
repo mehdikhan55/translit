@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.body{
+  display: block;
+}
+
 .main{
   width: 100vw;
   min-height: 100vh;
@@ -188,4 +192,50 @@ cursor: pointer;
 .loader{
   width: 5%;
   object-fit: contain;
+}
+
+
+/* Login Page  */
+/* Login Container  */
+.login-container{
+  display: flex;
+  background-color: #0D1117;
+  width: 100vw;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.login-box{
+  background-color: #161B22;
+  width: 40%;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: .6rem;
+}
+.login-box>label>h2{
+  color: white;
+  font-size:2.5em;
+  font-weight: 600;
+  margin-bottom: .1em;
+}
+#pass-field{
+  width: 70%;
+}
+#pass-field:focus{
+  outline: 2px solid #2664BE;
+
+}
+.login-btn{
+  width: 30%;
+  padding-block: .5rem;
+  background-color: #238636;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  cursor: pointer;
+
 }
