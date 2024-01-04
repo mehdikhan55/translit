@@ -42,7 +42,7 @@ export default function Translation() {
 
       const response = await openai.chat.completions.create({
         messages: [{ role: "user", content: msg }],
-        model: "gpt-3.5-turbo",
+        model: gptVersion === 'gpt4' ? "gpt-4" : "gpt-3.5-turbo",
       });
 
       if (response && response.choices && response.choices.length > 0) {
